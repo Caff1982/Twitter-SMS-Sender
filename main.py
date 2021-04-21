@@ -1,3 +1,5 @@
+import logging
+
 from tweepy import API
 from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
