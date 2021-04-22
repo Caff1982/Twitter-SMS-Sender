@@ -3,9 +3,9 @@ import requests
 import config
 
 
-def send_sms(message, test_flag=1):
+def send_sms(message, test_flag=0):
     """
-    Send SMS using txtlocal.co.uk API
+    Sends SMS using txtlocal.co.uk API
 
     test_flag (int): 1 to enable to test_mode (no sms sent), 0 to send sms
     """
@@ -13,10 +13,10 @@ def send_sms(message, test_flag=1):
     sender = config.TXTLOCAL_SENDER
     apihash = config.TXTLOCAL_API_HASH
     url = 'https://api.txtlocal.com/send/'
-    # More numbers can be added to the tuple
-    numbers = config.TXTLOCAL_NUMBERS
+    numbers = config.TXTLOCAL_NUMBERS # More numbers can be added to the tuple
 
-    params = {'test'    : test_flag,
+    params = {
+          'test'    : test_flag,
           'username': username,
           'hash'    : apihash,
           'message' : message,

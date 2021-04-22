@@ -19,8 +19,7 @@ class TwitterClient:
         self.api = API(self.auth)
 
         # Keywords to search for in tweets
-        self.keywords = ['traffic', 'update', 'from',
-                         'doge', 'dogecoin', 'btc', 'bitcoin',
+        self.keywords = ['doge', 'dogecoin', 'btc', 'bitcoin',
                          'eth', 'ethereum']
 
     def authenticate(self):
@@ -34,7 +33,7 @@ class TwitterClient:
         while True:
             try:
                 print('Connecting to Twitter stream...')
-                stream.filter(follow=[self.user_id])
+                stream.filter(follow=[self.user_id], track=self.keywords)
             except Exception as e:
                 print('An error occured: ', e)
                 print('Reconnecting...')
@@ -56,7 +55,7 @@ class TwitterListener(StreamListener):
         self.api = api
         self.user_id = user_id
 
-        self.message_text = 'Elon Musk tweeted including a key-word'
+        self.message_text = 'Elon Musk tweet includes a key-word'
 
     def on_status(self, tweet):
         if tweet.user.id_str == self.user_id:
@@ -79,7 +78,7 @@ if __name__ == '__main__':
 
     For actual use set to @elonmusk user_id: 44196397
     """
-    user_id = '3887467873'
+    user_id = '44196397'
     client = TwitterClient(user_id)
     client.start_stream()
     
