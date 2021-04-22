@@ -3,7 +3,7 @@ import requests
 import config
 
 
-def send_sms(message, test_flag=0):
+def send_sms(message, test_flag=1):
     """
     Sends SMS using txtlocal.co.uk API
 
@@ -19,7 +19,7 @@ def send_sms(message, test_flag=0):
           'test'    : test_flag,
           'username': username,
           'hash'    : apihash,
-          'message' : message,
+          'message' : message[:160],
           'sender'  : sender,
           'numbers' : numbers }
  

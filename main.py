@@ -18,10 +18,6 @@ class TwitterClient:
         self.auth = self.authenticate()
         self.api = API(self.auth)
 
-        # Keywords to search for in tweets
-        self.keywords = ['doge', 'dogecoin', 'btc', 'bitcoin',
-                         'eth', 'ethereum']
-
     def authenticate(self):
         auth = OAuthHandler(config.CONSUMER_KEY, config.CONSUMER_SECRET)
         auth.set_access_token(config.ACCESS_TOKEN, config.ACCESS_TOKEN_SECRET)
@@ -33,7 +29,7 @@ class TwitterClient:
         while True:
             try:
                 print('Connecting to Twitter stream...')
-                stream.filter(follow=[self.user_id], track=self.keywords)
+                stream.filter(follow=[self.user_id])
             except Exception as e:
                 print('An error occured: ', e)
                 print('Reconnecting...')
@@ -55,11 +51,14 @@ class TwitterListener(StreamListener):
         self.api = api
         self.user_id = user_id
 
-        self.message_text = 'Elon Musk tweet includes a key-word'
+        # Keywords to search for in tweets
+        self.keywords = ['doge', 'dogecoin', 'btc', 'bitcoin',
+                         'eth', 'ethereum']
 
     def on_status(self, tweet):
         if tweet.user.id_str == self.user_id:
-            send_sms(self.message_text)
+            if any(word in tweet.text for word in self.keywords):
+                send_sms(tweet.text)
 
     def on_error(self, status_code):
         print('An error occured: ', status_code)
