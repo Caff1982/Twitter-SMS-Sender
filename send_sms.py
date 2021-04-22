@@ -3,7 +3,7 @@ import requests
 import config
 
 
-def send_sms(message, test_flag=1):
+def send_sms(message, test_flag=0):
     """
     Sends SMS using txtlocal.co.uk API
 
