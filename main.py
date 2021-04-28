@@ -1,5 +1,3 @@
-import logging
-
 from tweepy import API
 from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
@@ -12,6 +10,9 @@ import config
 class TwitterClient:
     """
     Class for interacting with twitter API
+
+    args:
+        user_id (str): The twitter user-id of the account to monitor
     """
     def __init__(self, user_id):
         self.user_id = user_id
@@ -24,7 +25,7 @@ class TwitterClient:
         return auth
 
     def start_stream(self):
-        listener = TwitterListener(self.api, self.user_id)
+        listener = TwitterListener(self.user_id)
         stream = Stream(self.api.auth, listener)
         while True:
             try:
@@ -41,16 +42,15 @@ class TwitterClient:
 
 class TwitterListener(StreamListener):
     """
-    Listens to twitter stream and sends sms if applicable
-
-    user_id (str): The twitter id of the user
-    keywords (list): List of words, if any are in tweet sms is sent
+    Listens to twitter stream and sends SMS if applicable
+    
+    args:
+        user_id (str): The twitter id of the user
+        keywords (list): List of words, if any are in tweet SMS is sent
     """
 
-    def __init__(self, api, user_id):
-        self.api = api
+    def __init__(self, user_id):
         self.user_id = user_id
-
         # Keywords to search for in tweets
         self.keywords = ['doge', 'dogecoin', 'btc', 'bitcoin',
                          'eth', 'ethereum']
@@ -69,15 +69,7 @@ class TwitterListener(StreamListener):
         return True
 
 
-
 if __name__ == '__main__':
-    """
-    For testing using the @trafficalertuk twitter page
-    their id is: 756147538361618433
-
-    For actual use set to @elonmusk user_id: 44196397
-    """
-    user_id = '44196397'
-    client = TwitterClient(user_id)
+    client = TwitterClient(config.USER_ID)
     client.start_stream()
     

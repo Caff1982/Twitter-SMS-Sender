@@ -1,11 +1,14 @@
-CONSUMER_KEY  = 'wlHjz5Xpul1iZQd8PR4WKPvtJ'
-CONSUMER_SECRET ='KnXHEIuILcFx6HLD6R6lIdIKNk8HSlJPAzZ7nVxu464xy0M5QA'
-ACCESS_TOKEN = '1091769714077061122-qfxYkzbzAnSfxVCRvXXoPdXtqmq3kh'
-ACCESS_TOKEN_SECRET = 'ez6kP9gbgtTJ7xwbeidfwLY5YZokLvbs3gJj8IfB2eiTM'
+# Credentials for twitter
+CONSUMER_KEY  = ''
+CONSUMER_SECRET =''
+ACCESS_TOKEN = ''
+ACCESS_TOKEN_SECRET = ''
 
-elonmusk_user_id = '44196397'
+# USER_ID = '756147538361618433' # trafficalertuk id (used for testing)
+USER_ID = '44196397' # Elon Musk's twitter ID
 
-TXTLOCAL_USERNAME = 'stephencafferty@hotmail.com'
-TXTLOCAL_SENDER = 'Caff1982'
-TXTLOCAL_API_HASH = '3a1a189ecca85e5865aedff0048c88504e61ce4bddd6bfd750574aa4c41d7224'
-TXTLOCAL_NUMBERS = ('447526793700') # More numbers can be added to tuple
+TXTLOCAL_USERNAME = ''
+TXTLOCAL_SENDER = ''
+TXTLOCAL_API_HASH = ''
+# Numbers are added as strings, several numbers can be added to tuple
+TXTLOCAL_NUMBERS = ('')

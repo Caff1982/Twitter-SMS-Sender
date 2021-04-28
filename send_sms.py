@@ -6,14 +6,16 @@ import config
 def send_sms(message, test_flag=0):
     """
     Sends SMS using txtlocal.co.uk API
-
-    test_flag (int): 1 to enable to test_mode (no sms sent), 0 to send sms
+    
+    args:
+        message (str): The message text to be sent.
+        test_flag (int): 1 to enable to test_mode (no sms sent), 0 to send sms
     """
     username = config.TXTLOCAL_USERNAME
     sender = config.TXTLOCAL_SENDER
     apihash = config.TXTLOCAL_API_HASH
     url = 'https://api.txtlocal.com/send/'
-    numbers = config.TXTLOCAL_NUMBERS # More numbers can be added to the tuple
+    numbers = config.TXTLOCAL_NUMBERS
 
     params = {
           'test'    : test_flag,
