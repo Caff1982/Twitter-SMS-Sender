@@ -57,7 +57,7 @@ class TwitterListener(StreamListener):
 
     def on_status(self, tweet):
         if tweet.user.id_str == self.user_id:
-            if any(word in tweet.text for word in self.keywords):
+            if any(word in tweet.text.lower() for word in self.keywords):
                 send_sms(tweet.text)
 
     def on_error(self, status_code):
