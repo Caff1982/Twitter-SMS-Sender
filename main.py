@@ -51,9 +51,9 @@ class TwitterListener(StreamListener):
 
     def __init__(self, user_id):
         self.user_id = user_id
+
         # Keywords to search for in tweets
-        self.keywords = ['doge', 'dogecoin', 'btc', 'bitcoin',
-                         'eth', 'ethereum']
+        self.keywords = ['doge', 'btc', 'bitcoin', 'ethereum']
 
     def on_status(self, tweet):
         if tweet.user.id_str == self.user_id:
